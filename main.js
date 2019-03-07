@@ -28,7 +28,7 @@ class Student {
 
 let firstStudent = new Student("Colt", "Steele",1);
 let secondStudent = new Student("Blue", "Steele",2);
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
 
 class Point {
     constructor(x, y) {
@@ -48,3 +48,39 @@ class Point {
   const p2 = new Point(10, 10);
   
   console.log(Point.distance(p1, p2)); // 7.0710678118654755
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Node {
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+    }
+}
+class SingleLinkedList {
+    constructor() {
+        this.length = 0;
+        this.head = null;
+        this.tail = null;
+    }
+    push(val) {
+        var newNode = new Node(val)
+        if(!this.head) {
+            this.head = newNode;
+            this.tail = this.head;
+        }
+        else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+        this.length++
+        return this;
+    }
+}
+
+var list = new SingleLinkedList()
+
+
+// var first = new Node("First")
+// first.next = new Node("Second")
+// first.next.next = new Node("Third")
+// first.next.next.next = new Node("Fourth")
