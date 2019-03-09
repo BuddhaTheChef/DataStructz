@@ -50,7 +50,9 @@ class Point {
   console.log(Point.distance(p1, p2)); // 7.0710678118654755
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class Node {
+    //Single Liked List //
+
+  class Node {
     constructor(val) {
         this.val = val;
         this.next = null;
@@ -102,10 +104,24 @@ class SingleLinkedList {
         }
         return currentHead;
     }
+    unshift(val){
+        var newNode = new Node(val);
+        if(!this.head) {
+            this.head = new Node;
+            this.tail = this.head;
+        } else {
+        newNode.next = this.head;
+        this.head = newNode;
+        }
+        this.length++
+        return this;
+    }
 }
 
 var list = new SingleLinkedList()
-
+list.push('One')
+list.push('Two')
+list.push('Three')
 
 // var first = new Node("First")
 // first.next = new Node("Second")
