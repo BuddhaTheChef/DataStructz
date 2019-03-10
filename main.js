@@ -126,6 +126,14 @@ class SingleLinkedList {
         }
         return current;
     }
+    set(index, val) {
+        var foundNode = this.get(index);
+        if(foundNode){
+            foundNode.val = val;
+            return true;
+        }
+        return false;
+    }
 }
 
 var list = new SingleLinkedList()
