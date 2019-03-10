@@ -116,9 +116,20 @@ class SingleLinkedList {
         this.length++
         return this;
     }
+    get(index) {
+        if(index < 0 || index >= this.length) return null;
+        var count = 0;
+        var current = this.head;
+        while(count !== index) {
+            current = current.next;
+            count++ 
+        }
+        return current;
+    }
 }
 
 var list = new SingleLinkedList()
+list.push('Zero')
 list.push('One')
 list.push('Two')
 list.push('Three')
