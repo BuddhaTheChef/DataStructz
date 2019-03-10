@@ -147,6 +147,16 @@ class SingleLinkedList {
         this.length++
         return true;
     }
+    remove(index) {
+        if(index < 0 || index >= this.length) return undefined;
+        if(index === 0) return this.shift();
+        if(index === this.length - 1) return this.pop();
+        var prevNode = this.get(index - 1);
+        var removed = prevNode.next;
+        prevNode.next = removed.next;
+        this.length--;
+        return removed;
+    }
  }
 
 var list = new SingleLinkedList()
