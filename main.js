@@ -50,7 +50,7 @@ class Point {
   console.log(Point.distance(p1, p2)); // 7.0710678118654755
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Single Liked List //
+    //Single Liked List // BIG O NOTATION O(1) to O(N)
 
   class Node {
     constructor(val) {
@@ -157,6 +157,20 @@ class SingleLinkedList {
         this.length--;
         return removed;
     }
+    reverse() {
+        var node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        var prev = null;
+        var next;
+        for(var i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+        return this;
+    }
  }
 
 var list = new SingleLinkedList()
@@ -169,3 +183,25 @@ list.push('Three')
 // first.next = new Node("Second")
 // first.next.next = new Node("Third")
 // first.next.next.next = new Node("Fourth")
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Double Liked List // BIG O NOTATION ===
+
+class Node{
+    constructor(val) {
+        this.val = val;
+        this.next = null;
+        this.prev = null;
+    }
+}
+class DoubleLinkedList {
+    constructor(){
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+}
+
+
+
+
