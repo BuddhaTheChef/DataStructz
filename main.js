@@ -254,12 +254,37 @@ class DoubleLinkedList {
         this.length++
         return this;
     }
+    get(index) {
+        if(index < 0 || index >= this.length) return null;
+        if(index <= this.length/2) {
+            console.log('Working from front')
+        var count = 0;
+        var current = this.head;
+        while(count !== index) {
+            current = current.next;
+            count++;
+        }
+      } else {
+        console.log('Working from end')
+          var count = this.length -1;
+          var current = this.tail;
+          while(count !== index) {
+              current = current.prev;
+              count--;
+          }
+      }
+      return current;
+    }
 }
 
 var list = new DoubleLinkedList()
 list.push(1)
 list.push(2)
 list.push(3)
+list.push(4)
+list.push(5)
+list.push(6)
+list.push(7)
 
 
 
