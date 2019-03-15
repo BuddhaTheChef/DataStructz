@@ -320,15 +320,60 @@ list.push(7)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Using basic methods for stack method (LIFO) "last in first out"
-var stack = [];
+// var stack = [];
 
 //PUSH AND POP ARE BETTER OPTIONS BECSAUSE YOU DONT NEED TO REDIRECT INDEXS
-stack.push("google");
-stack.push("Youtube");
-stack.push("Twitch");
+
+// stack.push("google");
+// stack.push("Youtube");
+// stack.push("Twitch");
+
 //stack.pop() 
-stack.unshift("Instagram")
-stack.unshift("Games")
-stack.unshift("Github")
+
+// stack.unshift("Instagram")
+// stack.unshift("Games")
+// stack.unshift("Github")
+
 //stack.shift()
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+class Node1 {
+    constructor(value){
+        this.value = value;
+        this.next = null;
+    }
+}
+
+class Stack {
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    push(val) {
+        var newNode = new Node1(val);
+        if(!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            var temp = this.first;
+            this.first = newNode;
+            this.first.next = temp;
+        }
+        return ++this.size;
+    }
+    pop() {
+        if(!this.first) return null;
+        var temp = this.first;
+        if(this.first === this.last) this.last = null;
+        this.first = this.first.next;
+        this.size--;
+        return temp.value;
+    }
+}
+
+var stack = new Stack()
+
+ stack.push("google");
+ stack.push("Youtube");
+ stack.push("Twitch");
