@@ -187,147 +187,147 @@ class Point {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Double Liked List // BIG O NOTATION ===  O(1) to O(N) O(N/2)
 
-class Node{
-    constructor(val) {
-        this.val = val;
-        this.next = null;
-        this.prev = null;
-    }
-}
-class DoubleLinkedList {
-    constructor(){
-        this.head = null;
-        this.tail = null;
-        this.length = 0;
-    }
-    push(val) {
-        var newNode = new Node(val);    
-        if(this.length === 0) {
-            this.head = newNode;
-            this.tail = newNode;
-        } else {
-            this.tail.next = newNode;
-            newNode.prev = this.tail;
-            this.tail = newNode;
-        }
-        this.length++
-        return this;
-    }
-    pop() {
-        if(!this.head) return undefined;
-        var poppedNode = this.tail;
-        if(this.length === 1) {
-            this.head === null;
-            this.tail === null;
-        } else {
-            this.tail = poppedNode.prev;
-            this.tail.next = null;
-            poppedNode.prev = null;
-        }
-        this.length--;
-        return poppedNode;
-    }
-    shift() {
-        if(this.length === 0) return undefined;
-        var oldHead = this.head;
-        if(this.length === 1) {
-            this.head === null;
-            this.tail === null;
-        } else {
-        this.head = oldHead.next;
-        this.head.prev = null;
-        oldHead.next = null;
-        }
-        this.length--;
-        return oldHead;
-    }
-    unshift(val) {
-        var newNode = new Node(val);
-        if(this.length === 0) {
-            this.head = newNode;
-            this.tail = newNode;
-        } else {
-            this.head.prev = newNode;
-            newNode.next = this.head;
-            this.head = newNode
-        }
-        this.length++
-        return this;
-    }
-    get(index) {
-        if(index < 0 || index >= this.length) return null;
-        if(index <= this.length/2) {
-            console.log('Working from front')
-        var count = 0;
-        var current = this.head;
-        while(count !== index) {
-            current = current.next;
-            count++;
-        }
-      } else {
-        console.log('Working from end')
-          var count = this.length -1;
-          var current = this.tail;
-          while(count !== index) {
-              current = current.prev;
-              count--;
-          }
-      }
-      return current;
-    }
-    set(index, val) {
-        var foundNode = this.get(index);
-        if(foundNode !== null) {
-            foundNode.val = val;
-            return true;
-        }
-        return false;
-    }
-    insert(index, val) {
-        if(index < 0 || index > this.length) return false;
-        if(index === 0) return this.unshift(val);
-        if(index === this.length) return this.push(val);
-        var newNode = new Node(val);
-        var beforeNode = this.get(index - 1);
-        var afterNode = beforeNode.next;
-        beforeNode.next = newNode, newNode.prev = beforeNode;
-        newNode.next = afterNode, afterNode.prev = newNode;
-        this.length++;
-        return true;
-    }
-    remove(index) {
-        if(index < 0 || index >= this.length) return false;
-        if(index === 0) return this.shift();
-        if(index === this.length - 1) return this.pop();
-        var removedNode = this.get(index);
-        removedNode.prev.next = removedNode.next;
-        removedNode.next.prev = removedNode.prev;
-        removedNode.next = null;
-        removedNode.prev = null;
-        this.length--;
-        return removedNode;
-    }
-    //Reverse method test
-    // reverse(){
-    //     for(let node = this.head; node !== null;){
-    //           const nextNode = node.next
-    //           node.next = node.prev
-    //           node.prev = nextNode
-    //           node = nextNode
-    //     }
-    //       [this.head, this.tail] = [this.tail, this.head]
-    //       return this
-    //     }
-}
+// class Node{
+//     constructor(val) {
+//         this.val = val;
+//         this.next = null;
+//         this.prev = null;
+//     }
+// }
+// class DoubleLinkedList {
+//     constructor(){
+//         this.head = null;
+//         this.tail = null;
+//         this.length = 0;
+//     }
+//     push(val) {
+//         var newNode = new Node(val);    
+//         if(this.length === 0) {
+//             this.head = newNode;
+//             this.tail = newNode;
+//         } else {
+//             this.tail.next = newNode;
+//             newNode.prev = this.tail;
+//             this.tail = newNode;
+//         }
+//         this.length++
+//         return this;
+//     }
+//     pop() {
+//         if(!this.head) return undefined;
+//         var poppedNode = this.tail;
+//         if(this.length === 1) {
+//             this.head === null;
+//             this.tail === null;
+//         } else {
+//             this.tail = poppedNode.prev;
+//             this.tail.next = null;
+//             poppedNode.prev = null;
+//         }
+//         this.length--;
+//         return poppedNode;
+//     }
+//     shift() {
+//         if(this.length === 0) return undefined;
+//         var oldHead = this.head;
+//         if(this.length === 1) {
+//             this.head === null;
+//             this.tail === null;
+//         } else {
+//         this.head = oldHead.next;
+//         this.head.prev = null;
+//         oldHead.next = null;
+//         }
+//         this.length--;
+//         return oldHead;
+//     }
+//     unshift(val) {
+//         var newNode = new Node(val);
+//         if(this.length === 0) {
+//             this.head = newNode;
+//             this.tail = newNode;
+//         } else {
+//             this.head.prev = newNode;
+//             newNode.next = this.head;
+//             this.head = newNode
+//         }
+//         this.length++
+//         return this;
+//     }
+//     get(index) {
+//         if(index < 0 || index >= this.length) return null;
+//         if(index <= this.length/2) {
+//             console.log('Working from front')
+//         var count = 0;
+//         var current = this.head;
+//         while(count !== index) {
+//             current = current.next;
+//             count++;
+//         }
+//       } else {
+//         console.log('Working from end')
+//           var count = this.length -1;
+//           var current = this.tail;
+//           while(count !== index) {
+//               current = current.prev;
+//               count--;
+//           }
+//       }
+//       return current;
+//     }
+//     set(index, val) {
+//         var foundNode = this.get(index);
+//         if(foundNode !== null) {
+//             foundNode.val = val;
+//             return true;
+//         }
+//         return false;
+//     }
+//     insert(index, val) {
+//         if(index < 0 || index > this.length) return false;
+//         if(index === 0) return this.unshift(val);
+//         if(index === this.length) return this.push(val);
+//         var newNode = new Node(val);
+//         var beforeNode = this.get(index - 1);
+//         var afterNode = beforeNode.next;
+//         beforeNode.next = newNode, newNode.prev = beforeNode;
+//         newNode.next = afterNode, afterNode.prev = newNode;
+//         this.length++;
+//         return true;
+//     }
+//     remove(index) {
+//         if(index < 0 || index >= this.length) return false;
+//         if(index === 0) return this.shift();
+//         if(index === this.length - 1) return this.pop();
+//         var removedNode = this.get(index);
+//         removedNode.prev.next = removedNode.next;
+//         removedNode.next.prev = removedNode.prev;
+//         removedNode.next = null;
+//         removedNode.prev = null;
+//         this.length--;
+//         return removedNode;
+//     }
+//     //Reverse method test
+//     // reverse(){
+//     //     for(let node = this.head; node !== null;){
+//     //           const nextNode = node.next
+//     //           node.next = node.prev
+//     //           node.prev = nextNode
+//     //           node = nextNode
+//     //     }
+//     //       [this.head, this.tail] = [this.tail, this.head]
+//     //       return this
+//     //     }
+// }
 
-var list = new DoubleLinkedList()
-list.push(1)
-list.push(2)
-list.push(3)
-list.push(4)
-list.push(5)
-list.push(6)
-list.push(7)
+// var list = new DoubleLinkedList()
+// list.push(1)
+// list.push(2)
+// list.push(3)
+// list.push(4)
+// list.push(5)
+// list.push(6)
+// list.push(7)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Using basic methods for stack method (LIFO) "last in first out"
@@ -350,46 +350,47 @@ list.push(7)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Stacks BIG O NOTATION// O(1) LIFO
 
-class Node1 {
-    constructor(value){
-        this.value = value;
-        this.next = null;
-    }
-}
+// class Node1 {
+//     constructor(value){
+//         this.value = value;
+//         this.next = null;
+//     }
+// }
 
-class Stack {
-    constructor(){
-        this.first = null;
-        this.last = null;
-        this.size = 0;
-    }
-    push(val) {
-        var newNode = new Node1(val);
-        if(!this.first) {
-            this.first = newNode;
-            this.last = newNode;
-        } else {
-            var temp = this.first;
-            this.first = newNode;
-            this.first.next = temp;
-        }
-        return ++this.size;
-    }
-    pop() {
-        if(!this.first) return null;
-        var temp = this.first;
-        if(this.first === this.last) this.last = null;
-        this.first = this.first.next;
-        this.size--;
-        return temp.value;
-    }
-}
+// class Stack {
+//     constructor(){
+//         this.first = null;
+//         this.last = null;
+//         this.size = 0;
+//     }
+//     push(val) {
+//         var newNode = new Node1(val);
+//         if(!this.first) {
+//             this.first = newNode;
+//             this.last = newNode;
+//         } else {
+//             var temp = this.first;
+//             this.first = newNode;
+//             this.first.next = temp;
+//         }
+//         return ++this.size;
+//     }
+//     pop() {
+//         if(!this.first) return null;
+//         var temp = this.first;
+//         if(this.first === this.last) this.last = null;
+//         this.first = this.first
+//         .next;
+//         this.size--;
+//         return temp.value;
+//     }
+// }
 
-var stack = new Stack()
+// var stack = new Stack()
 
- stack.push("google");
- stack.push("Youtube");
- stack.push("Twitch");
+//  stack.push("google");
+//  stack.push("Youtube");
+//  stack.push("Twitch");
 
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //QUEUE FIFO - first in first out
@@ -408,4 +409,44 @@ var stack = new Stack()
 // q.unshift("Sec1")
 // q.unshift("Third1")
 // q.pop()
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Creating a Qeue and using methods FIFO BIG O NOTATION O(1)
+
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.next = null;
+    }
+}
+class Queue {
+    constructor(){
+        this.first = null;
+        this.last = null;
+        this.size = 0;
+    }
+    enqueue(val) {
+        var newNode = new Node(val);
+        if(!this.first) {
+            this.first = newNode;
+            this.last = newNode;
+        } else {
+            this.last.next = newNode;
+            this.last = newNode;
+        }
+        return this.size++;
+    }
+    dequeue() {
+        if(!this.first) return null;
+        var temp = this.first;
+        if(this.first === this.last) {
+            this.last  = null;
+        }
+        this.first = this.first.next;
+        this.size--
+        return temp.value;
+    }
+}
+
+var q = new Queue()
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
