@@ -412,42 +412,42 @@ class Point {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Creating a Qeue and using methods FIFO BIG O NOTATION O(1)
 
-class Node {
-    constructor(value) {
-        this.value = value;
-        this.next = null;
-    }
-}
-class Queue {
-    constructor(){
-        this.first = null;
-        this.last = null;
-        this.size = 0;
-    }
-    enqueue(val) {
-        var newNode = new Node(val);
-        if(!this.first) {
-            this.first = newNode;
-            this.last = newNode;
-        } else {
-            this.last.next = newNode;
-            this.last = newNode;
-        }
-        return this.size++;
-    }
-    dequeue() {
-        if(!this.first) return null;
-        var temp = this.first;
-        if(this.first === this.last) {
-            this.last  = null;
-        }
-        this.first = this.first.next;
-        this.size--
-        return temp.value;
-    }
-}
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.next = null;
+//     }
+// }
+// class Queue {
+//     constructor(){
+//         this.first = null;
+//         this.last = null;
+//         this.size = 0;
+//     }
+//     enqueue(val) {
+//         var newNode = new Node(val);
+//         if(!this.first) {
+//             this.first = newNode;
+//             this.last = newNode;
+//         } else {
+//             this.last.next = newNode;
+//             this.last = newNode;
+//         }
+//         return this.size++;
+//     }
+//     dequeue() {
+//         if(!this.first) return null;
+//         var temp = this.first;
+//         if(this.first === this.last) {
+//             this.last  = null;
+//         }
+//         this.first = this.first.next;
+//         this.size--
+//         return temp.value;
+//     }
+// }
 
-var q = new Queue()
+// var q = new Queue()
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Binary Search Trees
@@ -461,3 +461,25 @@ var q = new Queue()
                 //     /   \      /    \
                 //    1     3    10     14
 
+class Node {
+    constructor(value) {
+        this.value = value;
+        this.left = null;
+        this.right = null;
+    }
+}
+
+class BST {
+    constructor() {
+        this.root = null;
+    }
+}
+
+var tree = new BST();
+tree.root = new Node(9);
+tree.root.left = new Node(2);
+tree.root.right = new Node(12);
+tree.root.left.right = new Node(3);
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
