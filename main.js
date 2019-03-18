@@ -455,6 +455,9 @@
 //-Child nodes can only have 0-1-2 nodes under it
 //-Child nodes to the left are less than the parent / Child nodes to the right are greater than the parent node
 
+// Big O notation = Insertion O(log n)
+// Big O notation = Searching O(log n)
+
                 //             9
                 //          /     \
                 //        2         12
@@ -500,6 +503,24 @@ class BST {
                 }
             }
         }
+    }
+    find(value) {
+        if(this.root ===  null) return false;
+        var current = this.root;
+        var found = false;
+        while(current && !found){
+            if(value < current.value) {
+                current = current.left;
+            }
+            else if( value > current.value) {
+                current = current.right
+            }
+            else {
+                found = true;
+            }
+        }
+        if(!found) return undefined;
+        return current;
     }
 }
 
