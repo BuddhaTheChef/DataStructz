@@ -522,16 +522,46 @@ class BST {
         if(!found) return undefined;
         return current;
     }
+
+    BFS() {
+        var data = [];
+        var queue = [];
+        var node = this.root
+        queue.push(this.root);
+        while(queue.length) {
+            node = queue.shift();
+            data.push(node.value);
+            if(node.left) queue.push(node.left);
+            if(node.right) queue.push(node.right);
+        }
+        return data;
+    }
 }
 
 
 
-// Manual Insert 
+// // Manual Insert 
  var tree = new BST();
  tree.root = new Node(9);
  tree.root.left = new Node(2);
  tree.root.right = new Node(12);
  tree.root.left.right = new Node(3);
+ tree.insert(1);
+ tree.insert(10);
+ tree.insert(14);
+
+//  BFS OUTPUT [9,2,12,1,3,10,14]
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Tree Traversal
+//Two Methods:
+//-BFS(Breath First Search) (LEFT TO RIGHT) Output: [9,2,12,1,3,10,14]
+//-DFS(Depth First Search) Output: []
+
+                //             9
+                //          /     \
+                //        2         12
+                //     /   \      /    \
+                //    1     3    10     14
+
+ ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
