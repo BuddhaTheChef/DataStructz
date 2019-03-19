@@ -536,6 +536,18 @@ class BST {
         }
         return data;
     }
+
+    DFSPreorder() {
+        var data = [];
+        var current = this.root;
+        function traverse(node) {
+            data.push(node.value);
+            if(node.left) traverse(node.left);
+            if(node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
 }
 
 
@@ -550,13 +562,14 @@ class BST {
  tree.insert(10);
  tree.insert(14);
 
-//  BFS OUTPUT [9,2,12,1,3,10,14]
+//  BFS OUTPUT: [9,2,12,1,3,10,14]
+// DFS Preorder OUTPUT: [9,2,1,3,12,10,14]
 
 
 //Tree Traversal
 //Two Methods:
 //-BFS(Breath First Search) (LEFT TO RIGHT) Output: [9,2,12,1,3,10,14]
-//-DFS(Depth First Search) Output: []
+//-DFS(Depth First Search PreOrder) Output: [9,2,1,3,12,10,14]
 
                 //             9
                 //          /     \
