@@ -559,6 +559,17 @@ class BST {
         traverse(current);
         return data;
     }
+    DFSInorder() {
+        var data = [];
+        var current = this.root;
+        function traverse(node) {
+            if(node.left) traverse(node.left);
+            data.push(node.value);
+            if(node.right) traverse(node.right);
+        }
+        traverse(current);
+        return data;
+    }
 }
 
 
@@ -576,12 +587,17 @@ class BST {
 // BFS OUTPUT: [9,2,12,1,3,10,14]
 // DFS Preorder OUTPUT: [9,2,1,3,12,10,14]
 // DFS Postorder OUTPUT: [1,3,2,10,14,12,9]
+// DFS Inorder OUTPUT: [1,2,3,9,10,12,14]
 
 //Tree Traversal
-//Two Methods:
+//Two Methods: BFS && DFS
+
 //-BFS(Breath First Search) (LEFT TO RIGHT) Output: [9,2,12,1,3,10,14]
+
 //-DFS(Depth First Search PreOrder) Output: [9,2,1,3,12,10,14]
 //-DFS(Depth First Search PostOrder) Output: [1,3,2,10,14,12,9]
+//-DFS(Depth First Search InOrder) Output: [1,2,3,9,10,12,14]
+
 
                 //             9
                 //          /     \
