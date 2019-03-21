@@ -464,125 +464,123 @@
                 //     /   \      /    \
                 //    1     3    10     14
 
-class Node {
-    constructor(value) {
-        this.value = value;
-        this.left = null;
-        this.right = null;
-    }
-}
+// class Node {
+//     constructor(value) {
+//         this.value = value;
+//         this.left = null;
+//         this.right = null;
+//     }
+// }
 
-class BST {
-    constructor() {
-        this.root = null;
-    }
-    insert(value) {
-        var newNode = new Node(value);
-        if(this.root === null) {
-            this.root = newNode;
-            return this;
-        } else {
-            var current = this.root;
-            while(true) {
-                if(value === current.value) return undefined;
-                if(value < current.value) {
-                    if(current.left === null) {
-                        current.left = newNode;
-                        return this;
-                    } else {
-                        current = current.left;
-                    }
-                }
-                else if(value > current.value) {
-                    if(current.right === null) {
-                        current.right = newNode;
-                        return this;
-                    } else {
-                        current = current.right;
-                    }
-                }
-            }
-        }
-    }
-    find(value) {
-        if(this.root ===  null) return false;
-        var current = this.root;
-        var found = false;
-        while(current && !found){
-            if(value < current.value) {
-                current = current.left;
-            }
-            else if( value > current.value) {
-                current = current.right
-            }
-            else {
-                found = true;
-            }
-        }
-        if(!found) return undefined;
-        return current;
-    }
+// class BST {
+//     constructor() {
+//         this.root = null;
+//     }
+//     insert(value) {
+//         var newNode = new Node(value);
+//         if(this.root === null) {
+//             this.root = newNode;
+//             return this;
+//         } else {
+//             var current = this.root;
+//             while(true) {
+//                 if(value === current.value) return undefined;
+//                 if(value < current.value) {
+//                     if(current.left === null) {
+//                         current.left = newNode;
+//                         return this;
+//                     } else {
+//                         current = current.left;
+//                     }
+//                 }
+//                 else if(value > current.value) {
+//                     if(current.right === null) {
+//                         current.right = newNode;
+//                         return this;
+//                     } else {
+//                         current = current.right;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+//     find(value) {
+//         if(this.root ===  null) return false;
+//         var current = this.root;
+//         var found = false;
+//         while(current && !found){
+//             if(value < current.value) {
+//                 current = current.left;
+//             }
+//             else if( value > current.value) {
+//                 current = current.right
+//             }
+//             else {
+//                 found = true;
+//             }
+//         }
+//         if(!found) return undefined;
+//         return current;
+//     }
 
-    BFS() {
-        var data = [];
-        var queue = [];
-        var node = this.root
-        queue.push(this.root);
-        while(queue.length) {
-            node = queue.shift();
-            data.push(node.value);
-            if(node.left) queue.push(node.left);
-            if(node.right) queue.push(node.right);
-        }
-        return data;
-    }
+//     BFS() {
+//         var data = [];
+//         var queue = [];
+//         var node = this.root
+//         queue.push(this.root);
+//         while(queue.length) {
+//             node = queue.shift();
+//             data.push(node.value);
+//             if(node.left) queue.push(node.left);
+//             if(node.right) queue.push(node.right);
+//         }
+//         return data;
+//     }
 
-    DFSPreorder() {
-        var data = [];
-        var current = this.root;
-        function traverse(node) {
-            data.push(node.value);
-            if(node.left) traverse(node.left);
-            if(node.right) traverse(node.right);
-        }
-        traverse(current);
-        return data;
-    }
-    DFSPostorder() {
-        var data = [];
-        var current = this.root;
-        function traverse(node) {
-            if(node.left) traverse(node.left);
-            if(node.right) traverse(node.right);
-            data.push(node.value);
-        }
-        traverse(current);
-        return data;
-    }
-    DFSInorder() {
-        var data = [];
-        var current = this.root;
-        function traverse(node) {
-            if(node.left) traverse(node.left);
-            data.push(node.value);
-            if(node.right) traverse(node.right);
-        }
-        traverse(current);
-        return data;
-    }
-}
-
-
+//     DFSPreorder() {
+//         var data = [];
+//         var current = this.root;
+//         function traverse(node) {
+//             data.push(node.value);
+//             if(node.left) traverse(node.left);
+//             if(node.right) traverse(node.right);
+//         }
+//         traverse(current);
+//         return data;
+//     }
+//     DFSPostorder() {
+//         var data = [];
+//         var current = this.root;
+//         function traverse(node) {
+//             if(node.left) traverse(node.left);
+//             if(node.right) traverse(node.right);
+//             data.push(node.value);
+//         }
+//         traverse(current);
+//         return data;
+//     }
+//     DFSInorder() {
+//         var data = [];
+//         var current = this.root;
+//         function traverse(node) {
+//             if(node.left) traverse(node.left);
+//             data.push(node.value);
+//             if(node.right) traverse(node.right);
+//         }
+//         traverse(current);
+//         return data;
+//     }
+// }
 
 // // Manual Insert 
- var tree = new BST();
- tree.root = new Node(9);
- tree.root.left = new Node(2);
- tree.root.right = new Node(12);
- tree.root.left.right = new Node(3);
- tree.insert(1);
- tree.insert(10);
- tree.insert(14);
+//  var tree = new BST();
+//  tree.root = new Node(9);
+//  tree.root.left = new Node(2);
+//  tree.root.right = new Node(12);
+//  tree.root.left.right = new Node(3);
+//  tree.insert(1);
+//  tree.insert(10);
+//  tree.insert(14);
 
 // BFS OUTPUT: [9,2,12,1,3,10,14]
 // DFS Preorder OUTPUT: [9,2,1,3,12,10,14]
@@ -593,11 +591,15 @@ class BST {
 //Two Methods: BFS && DFS
 
 //-BFS(Breath First Search) (LEFT TO RIGHT) Output: [9,2,12,1,3,10,14]
+// Use Case: Goes from parent to child allowing you to see parental inhertiance over child
 
 //-DFS(Depth First Search PreOrder) Output: [9,2,1,3,12,10,14]
-//-DFS(Depth First Search PostOrder) Output: [1,3,2,10,14,12,9]
-//-DFS(Depth First Search InOrder) Output: [1,2,3,9,10,12,14]
+// Use Case: good for duplicating a tree the output with create another tree
 
+//-DFS(Depth First Search PostOrder) Output: [1,3,2,10,14,12,9]
+
+//-DFS(Depth First Search InOrder) Output: [1,2,3,9,10,12,14]
+// Use Case: Goes from lowest to highest(if you want to order the items least to greatest)
 
                 //             9
                 //          /     \
@@ -606,3 +608,52 @@ class BST {
                 //    1     3    10     14
 
  ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ //Binary heaps 
+//  Two Heaps:
+//  MaxBinaryHeap - parent nodes are larger than child nodes
+                //          41
+                //        /    \
+                //     39       33
+                //    /  \     /   \
+                // 18     27  12    1
+
+
+//  MinBinaryHeap - parent nodes are smaller than child nodes
+                //          1
+                //        /    \
+                //      9        2
+                //    /  \     /   \
+                // 18     27  12    16
+
+
+class MaxBinaryHeap {
+    constructor() {
+        this.values = [41,39,33,18,27,12,1];
+    }
+    insert(element) {
+        this.values.push(element);
+        this.bubbleUp();
+    }
+    bubbleUp() {
+        let idx = this.values.length -1;
+        const element = this.values[idx];
+        while(idx > 0) {
+            let parentIdx = Math.floor((idx -1)/2);
+            let parent = this.values[parentIdx];
+            if(element <= parent) break;
+            this.values[parentIdx] = element;
+            this.values[idx] = parent;
+            idx = parentIdx;
+        }
+    }
+}
+let heap = new MaxBinaryHeap();
+heap.insert(55)
+
+//[41,39,33,18,27,12,1,55]
+//         |
+//         v
+//[41,39,55,18,27,12,1,33]
+//         |
+//         v
+//[55,39,41,18,27,12,1,33]
