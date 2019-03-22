@@ -689,10 +689,8 @@ class MaxBinaryHeap {
 let heap = new MaxBinaryHeap();
 heap.insert(55)
 
-// Remove method removes the root node on Max heaps and lowest value for Min Heaps
-
-// extraxt max = OUTPUT: [41, 39, 33, 18, 27, 12, 1]
-
+// Insert method: 
+// BIG O: O(log n)
 //[41,39,33,18,27,12,1,55]
 //         |
 //         v
@@ -700,4 +698,94 @@ heap.insert(55)
 //         |
 //         v
 //[55,39,41,18,27,12,1,33]
+
+// Remove method removes the root node on Max heaps and lowest value for Min Heaps 
+// BIG O: O(log n)
+// extraxt max = OUTPUT: [41, 39, 33, 18, 27, 12, 1]
+
+// HEAPS ARE GREAT WITH MAKING A PRORITY QUEUE!!!!
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// WHAT IS A PRIORITY QUEUE?
+// - a data structure where each element has a priority. 
+//   Elements with higher priorites are served over those 
+//   with lower priorites
+
+// Priorty queues are usually made with MinHeaps
+
+class PriorityQueue {
+    constructor() {
+        this.values = [];
+    }
+    enqueue(val, priority) {
+        let newNode = new Node(val, priority);
+        this.values.push(newNode);
+        this.bubbleUp();
+    }
+    bubbleUp() {
+        let idx = this.values.length -1;
+        const element = this.values[idx];
+        while(idx > 0) {
+            let parentIdx = Math.floor((idx -1)/2);
+            let parent = this.values[parentIdx];
+            if(element.priority >= parent.priority) break;
+            this.values[parentIdx] = element;
+            this.values[idx] = parent;
+            idx = parentIdx;
+        }
+    }
+    dequeue() {
+        const min = this.values[0];
+        const end = this.values.pop();
+        if(this.values.length > 0) {
+            this.values[0] = end;
+            //trickle down
+            this.sinkDown();
+        }
+        return min;
+    }
+    sinkDown(){
+        let idx = 0;
+        const length = this.values.length;
+        const element = this.values[0];
+        while(true){
+            let leftChildIdx = 2 * idx + 1;
+            let rightChildIdx = 2 * idx + 2;
+            let leftChild, rightChild;
+            let swap = null;
+
+            if(leftChildIdx < length) {
+                leftChild = this.values[leftChildIdx];
+                if(leftChild.priority < element.priority) {
+                    swap = leftChildIdx;
+                }
+            }
+
+            if(rightChildIdx < length) {
+                rightChild = this.values[rightChildIdx];
+                if((swap === null && rightChild.priority < element.priority) || (swap !== null && rightChild.priority < leftChild.priority )) {
+                    swap = rightChildIdx;
+                }
+            }
+            if(swap === null) break;
+            this.values[idx] = this.values[swap];
+            this.values[swap] = element;
+            idx = swap;
+        }
+    }
+}
+
+class Node {
+    constructor(val, priority){
+        this.val = val;
+        this.priority = priority;
+    }
+}
+let ER = new PriorityQueue();
+ER.enqueue("common cold", 5);
+ER.enqueue("Gunshot wound", 1);
+ER.enqueue("Cracked head", 2);
+ER.enqueue("Broken Arm", 2);
+ER.enqueue("High Fever", 4);
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
