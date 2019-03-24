@@ -800,10 +800,15 @@ ER.enqueue("High Fever", 4);
 // -doesnt cluster values, but evenly spreads out values
 // -same input yeailds same output
 
+//PRIME NUMBERS
+//Prime numbers help a ton when making hash functions
+// - prime numbers helps spread the keys out evenly 
+// - also helpful if the array you put values into has a prime length
+
 console.log("p".charCodeAt(0))
 console.log("pi".charCodeAt(0))
 
-//Gives alphabetic ranking for alphabet
+//Gives alphabetic ranking for alphabet when subtracting 96
 console.log("Letter of alphabet order A =", "a".charCodeAt(0) -96)
 console.log("Letter of alphabet order B =","b".charCodeAt(0) -96)
 console.log("Letter of alphabet order Z =","z".charCodeAt(0) -96)
@@ -813,16 +818,23 @@ console.log("Letter of alphabet order Z =","z".charCodeAt(0) -96)
 //Basic hash function using charCodeAt for alphabet
 function hash(key, arrayLen) {
     let total = 0;
-    for(let char of key) {
+    let WEIRD_PRIME = 31;
+    for(let i = 0; i < Math.min(key.length, 100); i++) {
+        let char = key[i]
         //map "a" to 1, "b" to 2, "c" to 3, etc.
         let value = char.charCodeAt(0) - 96
-        total = (total + value) % arrayLen;
+        total = (total * WEIRD_PRIME + value) % arrayLen;
     }
     return total;
 }
  
-console.log(hash("pink", 9))
-console.log(hash("red", 9))
+console.log(hash("pink", 13))
+console.log(hash("red", 13))
+console.log(hash("blue", 13))
+console.log(hash("orange", 13))
+console.log(hash("green", 13))
+
+
 
 
 
