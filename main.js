@@ -789,3 +789,43 @@ ER.enqueue("High Fever", 4);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//HASH TABLE or HASH MAP
+// - hash tables are used to store key-value pairs 
+// - they are like arrays, but the keys are not ordered 
+// - fast for finding, adding, and removing 
+// - Very fast
+
+// HASH FUNCTIONS
+// - must be fast
+// -doesnt cluster values, but evenly spreads out values
+// -same input yeailds same output
+
+console.log("p".charCodeAt(0))
+console.log("pi".charCodeAt(0))
+
+//Gives alphabetic ranking for alphabet
+console.log("Letter of alphabet order A =", "a".charCodeAt(0) -96)
+console.log("Letter of alphabet order B =","b".charCodeAt(0) -96)
+console.log("Letter of alphabet order Z =","z".charCodeAt(0) -96)
+
+
+
+//Basic hash function using charCodeAt for alphabet
+function hash(key, arrayLen) {
+    let total = 0;
+    for(let char of key) {
+        //map "a" to 1, "b" to 2, "c" to 3, etc.
+        let value = char.charCodeAt(0) - 96
+        total = (total + value) % arrayLen;
+    }
+    return total;
+}
+ 
+console.log(hash("pink", 9))
+console.log(hash("red", 9))
+
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
