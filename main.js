@@ -626,68 +626,71 @@
                 // 18     27  12    16
 
 
-class MaxBinaryHeap {
-    constructor() {
-        this.values = [41,39,33,18,27,12,1];
-    }
-    insert(element) {
-        this.values.push(element);
-        this.bubbleUp();
-    }
-    bubbleUp() {
-        let idx = this.values.length -1;
-        const element = this.values[idx];
-        while(idx > 0) {
-            let parentIdx = Math.floor((idx -1)/2);
-            let parent = this.values[parentIdx];
-            if(element <= parent) break;
-            this.values[parentIdx] = element;
-            this.values[idx] = parent;
-            idx = parentIdx;
-        }
-    }
-    extractMax() {
-        const max = this.values[0];
-        const end = this.values.pop();
-        if(this.values.length > 0) {
-            this.values[0] = end;
-            //trickle down
-            this.sinkDown();
-        }
-        return max;
-    }
-    sinkDown(){
-        let idx = 0;
-        const length = this.values.length;
-        const element = this.values[0];
-        while(true){
-            let leftChildIdx = 2 * idx + 1;
-            let rightChildIdx = 2 * idx + 2;
-            let leftChild, rightChild;
-            let swap = null;
+// class MaxBinaryHeap {
+//     constructor() {
+//         this.values = [41,39,33,18,27,12,1];
+//     }
+//     insert(element) {
+//         this.values.push(element);
+//         this.bubbleUp();
+//     }
+//     bubbleUp() {
+//         let idx = this.values.length -1;
+//         const element = this.values[idx];
+//         while(idx > 0) {
+//             let parentIdx = Math.floor((idx -1)/2);
+//             let parent = this.values[parentIdx];
+//             if(element <= parent) break;
+//             this.values[parentIdx] = element;
+//             this.values[idx] = parent;
+//             idx = parentIdx;
+//         }
+//     }
+//     extractMax() {
+//         const max = this.values[0];
+//         const end = this.values.pop();
+//         if(this.values.length > 0) {
+//             this.values[0] = end;
+//             //trickle down
+//             this.sinkDown();
+//         }
+//         return max;
+//     }
+//     sinkDown(){
+//         let idx = 0;
+//         const length = this.values.length;
+//         const element = this.values[0];
+//         while(true){
+//             let leftChildIdx = 2 * idx + 1;
+//             let rightChildIdx = 2 * idx + 2;
+//             let leftChild, rightChild;
+//             let swap = null;
 
-            if(leftChildIdx < length) {
-                leftChild = this.values[leftChildIdx];
-                if(leftChild > element) {
-                    swap = leftChildIdx;
-                }
-            }
+//             if(leftChildIdx < length) {
+//                 leftChild = this.values[leftChildIdx];
+//                 if(leftChild > element) {
+//                     swap = leftChildIdx;
+//                 }
+//             }
 
-            if(rightChildIdx < length) {
-                rightChild = this.values[rightChildIdx];
-                if((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild )) {
-                    swap = rightChildIdx;
-                }
-            }
-            if(swap === null) break;
-            this.values[idx] = this.values[swap];
-            this.values[swap] = element;
-            idx = swap;
-        }
-    }
-}
-let heap = new MaxBinaryHeap();
-heap.insert(55)
+//             if(rightChildIdx < length) {
+//                 rightChild = this.values[rightChildIdx];
+//                 if((swap === null && rightChild > element) || (swap !== null && rightChild > leftChild )) {
+//                     swap = rightChildIdx;
+//                 }
+//             }
+//             if(swap === null) break;
+//             this.values[idx] = this.values[swap];
+//             this.values[swap] = element;
+//             idx = swap;
+//         }
+//     }
+// }
+// let heap = new MaxBinaryHeap();
+// heap.insert(55)
+
+
+
 
 // Insert method: 
 // BIG O: O(log n)
@@ -712,80 +715,80 @@ heap.insert(55)
 
 // Priorty queues are usually made with MinHeaps
 
-class PriorityQueue {
-    constructor() {
-        this.values = [];
-    }
-    enqueue(val, priority) {
-        let newNode = new Node(val, priority);
-        this.values.push(newNode);
-        this.bubbleUp();
-    }
-    bubbleUp() {
-        let idx = this.values.length -1;
-        const element = this.values[idx];
-        while(idx > 0) {
-            let parentIdx = Math.floor((idx -1)/2);
-            let parent = this.values[parentIdx];
-            if(element.priority >= parent.priority) break;
-            this.values[parentIdx] = element;
-            this.values[idx] = parent;
-            idx = parentIdx;
-        }
-    }
-    dequeue() {
-        const min = this.values[0];
-        const end = this.values.pop();
-        if(this.values.length > 0) {
-            this.values[0] = end;
-            //trickle down
-            this.sinkDown();
-        }
-        return min;
-    }
-    sinkDown(){
-        let idx = 0;
-        const length = this.values.length;
-        const element = this.values[0];
-        while(true){
-            let leftChildIdx = 2 * idx + 1;
-            let rightChildIdx = 2 * idx + 2;
-            let leftChild, rightChild;
-            let swap = null;
+// class PriorityQueue {
+//     constructor() {
+//         this.values = [];
+//     }
+//     enqueue(val, priority) {
+//         let newNode = new Node(val, priority);
+//         this.values.push(newNode);
+//         this.bubbleUp();
+//     }
+//     bubbleUp() {
+//         let idx = this.values.length -1;
+//         const element = this.values[idx];
+//         while(idx > 0) {
+//             let parentIdx = Math.floor((idx -1)/2);
+//             let parent = this.values[parentIdx];
+//             if(element.priority >= parent.priority) break;
+//             this.values[parentIdx] = element;
+//             this.values[idx] = parent;
+//             idx = parentIdx;
+//         }
+//     }
+//     dequeue() {
+//         const min = this.values[0];
+//         const end = this.values.pop();
+//         if(this.values.length > 0) {
+//             this.values[0] = end;
+//             //trickle down
+//             this.sinkDown();
+//         }
+//         return min;
+//     }
+//     sinkDown(){
+//         let idx = 0;
+//         const length = this.values.length;
+//         const element = this.values[0];
+//         while(true){
+//             let leftChildIdx = 2 * idx + 1;
+//             let rightChildIdx = 2 * idx + 2;
+//             let leftChild, rightChild;
+//             let swap = null;
 
-            if(leftChildIdx < length) {
-                leftChild = this.values[leftChildIdx];
-                if(leftChild.priority < element.priority) {
-                    swap = leftChildIdx;
-                }
-            }
+//             if(leftChildIdx < length) {
+//                 leftChild = this.values[leftChildIdx];
+//                 if(leftChild.priority < element.priority) {
+//                     swap = leftChildIdx;
+//                 }
+//             }
 
-            if(rightChildIdx < length) {
-                rightChild = this.values[rightChildIdx];
-                if((swap === null && rightChild.priority < element.priority) || (swap !== null && rightChild.priority < leftChild.priority )) {
-                    swap = rightChildIdx;
-                }
-            }
-            if(swap === null) break;
-            this.values[idx] = this.values[swap];
-            this.values[swap] = element;
-            idx = swap;
-        }
-    }
-}
+//             if(rightChildIdx < length) {
+//                 rightChild = this.values[rightChildIdx];
+//                 if((swap === null && rightChild.priority < element.priority) || (swap !== null && rightChild.priority < leftChild.priority )) {
+//                     swap = rightChildIdx;
+//                 }
+//             }
+//             if(swap === null) break;
+//             this.values[idx] = this.values[swap];
+//             this.values[swap] = element;
+//             idx = swap;
+//         }
+//     }
+// }
 
-class Node {
-    constructor(val, priority){
-        this.val = val;
-        this.priority = priority;
-    }
-}
-let ER = new PriorityQueue();
-ER.enqueue("common cold", 5);
-ER.enqueue("Gunshot wound", 1);
-ER.enqueue("Cracked head", 2);
-ER.enqueue("Broken Arm", 2);
-ER.enqueue("High Fever", 4);
+// class Node {
+//     constructor(val, priority){
+//         this.val = val;
+//         this.priority = priority;
+//     }
+// }
+// let ER = new PriorityQueue();
+// ER.enqueue("common cold", 5);
+// ER.enqueue("Gunshot wound", 1);
+// ER.enqueue("Cracked head", 2);
+// ER.enqueue("Broken Arm", 2);
+// ER.enqueue("High Fever", 4);
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -805,37 +808,86 @@ ER.enqueue("High Fever", 4);
 // - prime numbers helps spread the keys out evenly 
 // - also helpful if the array you put values into has a prime length
 
-console.log("p".charCodeAt(0))
-console.log("pi".charCodeAt(0))
-
-//Gives alphabetic ranking for alphabet when subtracting 96
-console.log("Letter of alphabet order A =", "a".charCodeAt(0) -96)
-console.log("Letter of alphabet order B =","b".charCodeAt(0) -96)
-console.log("Letter of alphabet order Z =","z".charCodeAt(0) -96)
+//DEALING WITH COLLISIONS
+//Seprate chaining
+// - if keys are the same values we can saperate them with a nested array
+//Linear probing
+// - When there is a collison we search through array and find next empty slot
 
 
+// console.log("p".charCodeAt(0))
+// console.log("pi".charCodeAt(0))
 
-//Basic hash function using charCodeAt for alphabet
-function hash(key, arrayLen) {
-    let total = 0;
-    let WEIRD_PRIME = 31;
-    for(let i = 0; i < Math.min(key.length, 100); i++) {
-        let char = key[i]
-        //map "a" to 1, "b" to 2, "c" to 3, etc.
-        let value = char.charCodeAt(0) - 96
-        total = (total * WEIRD_PRIME + value) % arrayLen;
-    }
-    return total;
-}
+// //Gives alphabetic ranking for alphabet when subtracting 96
+// console.log("Letter of alphabet order A =", "a".charCodeAt(0) -96)
+// console.log("Letter of alphabet order B =","b".charCodeAt(0) -96)
+// console.log("Letter of alphabet order Z =","z".charCodeAt(0) -96)
+
+
+
+// //Basic hash function using charCodeAt for alphabet
+// function hash(key, arrayLen) {
+//     let total = 0;
+//     let WEIRD_PRIME = 31;
+//     for(let i = 0; i < Math.min(key.length, 100); i++) {
+//         let char = key[i]
+//         //map "a" to 1, "b" to 2, "c" to 3, etc.
+//         let value = char.charCodeAt(0) - 96
+//         total = (total * WEIRD_PRIME + value) % arrayLen;
+//     }
+//     return total;
+// }
  
-console.log(hash("pink", 13))
-console.log(hash("red", 13))
-console.log(hash("blue", 13))
-console.log(hash("orange", 13))
-console.log(hash("green", 13))
+// console.log(hash("pink", 13))
+// console.log(hash("red", 13))
+// console.log(hash("blue", 13))
+// console.log(hash("orange", 13))
+// console.log(hash("green", 13))
 
 
-
+class HashTable {
+    constructor(size=53){
+      this.keyMap = new Array(size);
+    }
+  
+    _hash(key) {
+      let total = 0;
+      let WEIRD_PRIME = 31;
+      for (let i = 0; i < Math.min(key.length, 100); i++) {
+        let char = key[i];
+        let value = char.charCodeAt(0) - 96
+        total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+      }
+      return total;
+    }
+    set(key,value){
+      let index = this._hash(key);
+      if(!this.keyMap[index]){
+        this.keyMap[index] = [];
+      }
+      this.keyMap[index].push([key, value]);
+    }
+    get(key){
+      let index = this._hash(key);
+      if(this.keyMap[index]){
+        for(let i = 0; i < this.keyMap[index].length; i++){
+          if(this.keyMap[index][i][0] === key) {
+            return this.keyMap[index][i][1]
+          }
+        }
+      }
+      return undefined;
+    }
+  }
+  
+  let ht = new HashTable(17);
+  ht.set("maroon","#800000")
+  ht.set("yellow","#FFFF00")
+  ht.set("olive","#808000")
+  ht.set("salmon","#FA8072")
+  ht.set("lightcoral","#F08080")
+  ht.set("mediumvioletred","#C71585")
+  ht.set("plum","#DDA0DD")
 
 
 
