@@ -792,7 +792,7 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//HASH TABLE or HASH MAP
+//HASH TABLE or HASH MAP      BIG O NOTATION: Insert O(1), Deletion O(1), Get O(1)
 // - hash tables are used to store key-value pairs 
 // - they are like arrays, but the keys are not ordered 
 // - fast for finding, adding, and removing 
@@ -845,79 +845,97 @@
 // console.log(hash("green", 13))
 
 
-class HashTable {
-    constructor(size=53){
-      this.keyMap = new Array(size);
-    }
+// class HashTable {
+//     constructor(size=53){
+//       this.keyMap = new Array(size);
+//     }
   
-    _hash(key) {
-      let total = 0;
-      let WEIRD_PRIME = 31;
-      for (let i = 0; i < Math.min(key.length, 100); i++) {
-        let char = key[i];
-        let value = char.charCodeAt(0) - 96
-        total = (total * WEIRD_PRIME + value) % this.keyMap.length;
-      }
-      return total;
-    }
-    set(key,value){
-      let index = this._hash(key);
-      if(!this.keyMap[index]){
-        this.keyMap[index] = [];
-      }
-      this.keyMap[index].push([key, value]);
-    }
-    get(key){
-      let index = this._hash(key);
-      if(this.keyMap[index]){
-        for(let i = 0; i < this.keyMap[index].length; i++){
-          if(this.keyMap[index][i][0] === key) {
-            return this.keyMap[index][i][1]
-          }
-        }
-      }
-      return undefined;
-    }
-    values(){
-        let valuesArr = [];
-        for(let i = 0; i < this.keyMap.length; i++){
-            if(this.keyMap[i]){
-                for(let j = 0; j < this.keyMap[i].length; j++){
-                    if(!valuesArr.includes(this.keyMap[i][j][1]))
-                    //getting the value of arrays
-                    valuesArr.push(this.keyMap[i][j][1])
-                }
-            }
-        }
-        return valuesArr;
-    }
-    keys(){
-        let keysArr = [];
-        for(let i = 0; i < this.keyMap.length; i++){
-            if(this.keyMap[i]){
-                for(let j = 0; j < this.keyMap[i].length; j++){
-                    if(!keysArr.includes(this.keyMap[i][j][0]))
-                    //getting the keys of arrays
-                    keysArr.push(this.keyMap[i][j][0])
-                }
-            }
-        }
-        return keysArr;
-    }
-  }
+//     _hash(key) {
+//       let total = 0;
+//       let WEIRD_PRIME = 31;
+//       for (let i = 0; i < Math.min(key.length, 100); i++) {
+//         let char = key[i];
+//         let value = char.charCodeAt(0) - 96
+//         total = (total * WEIRD_PRIME + value) % this.keyMap.length;
+//       }
+//       return total;
+//     }
+//     set(key,value){
+//       let index = this._hash(key);
+//       if(!this.keyMap[index]){
+//         this.keyMap[index] = [];
+//       }
+//       this.keyMap[index].push([key, value]);
+//     }
+//     get(key){
+//       let index = this._hash(key);
+//       if(this.keyMap[index]){
+//         for(let i = 0; i < this.keyMap[index].length; i++){
+//           if(this.keyMap[index][i][0] === key) {
+//             return this.keyMap[index][i][1]
+//           }
+//         }
+//       }
+//       return undefined;
+//     }
+//     values(){
+//         let valuesArr = [];
+//         for(let i = 0; i < this.keyMap.length; i++){
+//             if(this.keyMap[i]){
+//                 for(let j = 0; j < this.keyMap[i].length; j++){
+//                     if(!valuesArr.includes(this.keyMap[i][j][1]))
+//                     //getting the value of arrays
+//                     valuesArr.push(this.keyMap[i][j][1])
+//                 }
+//             }
+//         }
+//         return valuesArr;
+//     }
+//     keys(){
+//         let keysArr = [];
+//         for(let i = 0; i < this.keyMap.length; i++){
+//             if(this.keyMap[i]){
+//                 for(let j = 0; j < this.keyMap[i].length; j++){
+//                     if(!keysArr.includes(this.keyMap[i][j][0]))
+//                     //getting the keys of arrays
+//                     keysArr.push(this.keyMap[i][j][0])
+//                 }
+//             }
+//         }
+//         return keysArr;
+//     }
+//   }
   
-  let ht = new HashTable(17);
-  ht.set("maroon","#800000")
-  ht.set("yellow","#FFFF00")
-  ht.set("olive","#808000")
-  ht.set("salmon","#FA8072")
-  ht.set("lightcoral","#F08080")
-  ht.set("mediumvioletred","#C71585")
-  ht.set("plum","#DDA0DD")
-  ht.set("plum","#DDA0DD")
+//   let ht = new HashTable(17);
+//   ht.set("maroon","#800000")
+//   ht.set("yellow","#FFFF00")
+//   ht.set("olive","#808000")
+//   ht.set("salmon","#FA8072")
+//   ht.set("lightcoral","#F08080")
+//   ht.set("mediumvioletred","#C71585")
+//   ht.set("plum","#DDA0DD")
+//   ht.set("plum","#DDA0DD")
 
-  ht.keys().forEach((key) => console.log(ht.get(key)))
+//   ht.keys().forEach((key) => console.log(ht.get(key)))
 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//GRAPHS 
+//-Collections of nodes and a connections between them
+// -social media connections(friends connected to other friends)
+// -google maps
+// -recommendations
+
+// GRAPH TERMS
+// Vertex - a Node
+// Edge - connection between Nodes 
+// Weighted/Unweighted - values assigned to distances between vertices
+// Directed/Undirected - directions assigned to distances betweeen vertices
+
+// TYPES OF GRAPHS
+// Weighted-when you assign a value to the connection(edge)
+//Unweighed-when you have no value assigned to an edge
+//Directed- there is a certain direction assigned to the edge
+//Undtirected- when there is no direction connecting nodes
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
