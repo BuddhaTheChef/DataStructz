@@ -920,11 +920,27 @@
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//GRAPHS 
+//GRAPHS  
 //-Collections of nodes and a connections between them
 // -social media connections(friends connected to other friends)
 // -google maps
 // -recommendations
+
+// BIG O NOTATION  (V = number of Vertices, E = number of edges)
+// Adjacency Matrix :
+//       Add Vertex:O(V^2) 
+//       Add Edge:O(1)
+//       Remove Vertex:O(v^2)   
+//       Remove Edge:O(1)  
+//       Query:O(1) 
+//       Storage: O(v^2) 
+// Adjacency List: 
+//       Add Vertex: O(1) 
+//       Add Edge: O(1) 
+//       Remove Vertex: O(V + E)  
+//       Remove Edge: O(E)  
+//       Query:  O(V + E)   
+//       Storage: O(V + E)  
 
 // GRAPH TERMS
 // Vertex - a Node
@@ -937,5 +953,16 @@
 //Unweighed-when you have no value assigned to an edge
 //Directed- there is a certain direction assigned to the edge
 //Undtirected- when there is no direction connecting nodes
+
+// Adjacancy Matrix- 2d structure used to store nested array values in a table
+// -Pros:Faster to look up specific edge
+// -Cons:Takes up more space, slower to iterate over all edges
+
+// Adjaceny list- uses array or list to store the edges or you can use a hash table
+// -Pros: Can take up less space, faster to intergrate over all edges 
+// -Cons: Can be slower to look up specific edge
+
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
