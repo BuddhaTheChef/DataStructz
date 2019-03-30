@@ -962,7 +962,21 @@
 // -Pros: Can take up less space, faster to intergrate over all edges 
 // -Cons: Can be slower to look up specific edge
 
+class Graph{
+  constructor(){
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+}
 
+
+var g = new Graph();
+g.addVertex('Tokyo')
+g.addVertex('Seoul')
+g.addVertex('America')
+g.addVertex('Hawaii')
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
