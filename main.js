@@ -981,6 +981,13 @@ class Graph{
       v => v !== v1
     );
   }
+  removeVertex(vertex) {
+    while(this.adjacencyList[vertex].length) {
+      const adjacentVertex = this.adjacencyList[vertex].pop();
+      this.removeEdge(vertex, adjacentVertex);
+    }
+    delete this.adjacencyList[vertex]
+  }
 }
 
 
@@ -991,6 +998,7 @@ g.addVertex('America')
 g.addVertex('Hawaii')
 g.addEdge('Tokyo', 'Hawaii')
 g.addEdge('Tokyo', 'Seoul')
-
+g.addEdge('Hawaii', 'America')
+g.addEdge('Seoul', 'Hawaii')
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
