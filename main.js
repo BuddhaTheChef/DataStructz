@@ -962,122 +962,144 @@
 // -Pros: Can take up less space, faster to intergrate over all edges 
 // -Cons: Can be slower to look up specific edge
 
-class Graph{
-  constructor(){
+// class Graph{
+//   constructor(){
+//     this.adjacencyList = {};
+//   }
+//   addVertex(vertex) {
+//     if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+//   }
+//   addEdge(v1, v2) {
+//     this.adjacencyList[v1].push(v2);
+//     this.adjacencyList[v2].push(v1);
+//   }
+//   removeEdge(v1,v2) {
+//     this.adjacencyList[v1] = this.adjacencyList[v1].filter(
+//       v => v !== v2
+//     );
+//     this.adjacencyList[v2] = this.adjacencyList[v2].filter(
+//       v => v !== v1
+//     );
+//   }
+//   removeVertex(vertex) {
+//     while(this.adjacencyList[vertex].length) {
+//       const adjacentVertex = this.adjacencyList[vertex].pop();
+//       this.removeEdge(vertex, adjacentVertex);
+//     }
+//     delete this.adjacencyList[vertex]
+//   }
+//   depthFirstRecursive(start){
+//     const result = [];
+//     const visited = {};
+//     const adjacencyList = this.adjacencyList;
+
+//     (function dfs(vertex) {
+//       if(!vertex) return null;
+//       visited[vertex] = true;
+//       result.push(vertex);
+//       adjacencyList[vertex].forEach(neighbor=> {
+//         if(!visited[neighbor]){
+//           return dfs(neighbor)
+//         }
+//       })
+//     })(start)
+//     return result;
+//   }
+//   depthFirstItteritave(start) {
+//     const stack = [start];
+//     const result = [];
+//     const visited = {};
+//     let currentVertex;
+
+//     visited[start] = true;
+//     while(stack.length) {
+//       console.log(stack)
+//       currentVertex = stack.pop();
+//       result.push(currentVertex);
+
+//       this.adjacencyList[currentVertex].forEach(neighbor => {
+//         if(!visited[neighbor]) {
+//           visited[neighbor] = true;
+//           stack.push(neighbor)
+//         }
+//       })
+//     }
+//     return result;
+//   }
+
+//   breathFirstSearch(start) {
+//     const queue = [start];
+//     const result = [];
+//     const visited = {};
+//     let currentVertex;
+//     visited[start] = true;
+
+//     while(queue.length) {
+//       currentVertex = queue.shift();
+//       result.push(currentVertex);
+
+//       this.adjacencyList[currentVertex].forEach(neighbor => {
+//         if(!visited[neighbor]){
+//           visited[neighbor] = true;
+//           queue.push(neighbor);
+//         }
+//       })
+//     }
+//     return result;
+//   }
+// }
+
+
+// var g = new Graph();
+// // g.addVertex('Tokyo')
+// // g.addVertex('Seoul')
+// // g.addVertex('America')
+// // g.addVertex('Hawaii')
+// // g.addEdge('Tokyo', 'Hawaii')
+// // g.addEdge('Tokyo', 'Seoul')
+// // g.addEdge('Hawaii', 'America')
+// // g.addEdge('Seoul', 'Hawaii')
+// g.addVertex("A")
+// g.addVertex("B")
+// g.addVertex("C")                           
+// g.addVertex("D")                       
+// g.addVertex("E")                       
+// g.addVertex("F")                       
+//                     //      A
+//                     //    /   \
+//                     //   B     C
+//                     //  /       \
+//                     // D---------E
+//                     // \         /
+//                     //  \       /
+//                     //      F                       
+// g.addEdge("A","B")                    
+// g.addEdge("A","C")                     
+// g.addEdge("B","D")                         
+// g.addEdge("C","E")
+// g.addEdge("D","E")
+// g.addEdge("D","F")
+// g.addEdge("E","F")
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Weighted graph
+
+class WeightedGraph {
+  constructor() {
     this.adjacencyList = {};
   }
   addVertex(vertex) {
     if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
   }
-  addEdge(v1, v2) {
-    this.adjacencyList[v1].push(v2);
-    this.adjacencyList[v2].push(v1);
-  }
-  removeEdge(v1,v2) {
-    this.adjacencyList[v1] = this.adjacencyList[v1].filter(
-      v => v !== v2
-    );
-    this.adjacencyList[v2] = this.adjacencyList[v2].filter(
-      v => v !== v1
-    );
-  }
-  removeVertex(vertex) {
-    while(this.adjacencyList[vertex].length) {
-      const adjacentVertex = this.adjacencyList[vertex].pop();
-      this.removeEdge(vertex, adjacentVertex);
-    }
-    delete this.adjacencyList[vertex]
-  }
-  depthFirstRecursive(start){
-    const result = [];
-    const visited = {};
-    const adjacencyList = this.adjacencyList;
-
-    (function dfs(vertex) {
-      if(!vertex) return null;
-      visited[vertex] = true;
-      result.push(vertex);
-      adjacencyList[vertex].forEach(neighbor=> {
-        if(!visited[neighbor]){
-          return dfs(neighbor)
-        }
-      })
-    })(start)
-    return result;
-  }
-  depthFirstItteritave(start) {
-    const stack = [start];
-    const result = [];
-    const visited = {};
-    let currentVertex;
-
-    visited[start] = true;
-    while(stack.length) {
-      console.log(stack)
-      currentVertex = stack.pop();
-      result.push(currentVertex);
-
-      this.adjacencyList[currentVertex].forEach(neighbor => {
-        if(!visited[neighbor]) {
-          visited[neighbor] = true;
-          stack.push(neighbor)
-        }
-      })
-    }
-    return result;
-  }
-
-  breathFirstSearch(start) {
-    const queue = [start];
-    const result = [];
-    const visited = {};
-    let currentVertex;
-    visited[start] = true;
-
-    while(queue.length) {
-      currentVertex = queue.shift();
-      result.push(currentVertex);
-
-      this.adjacencyList[currentVertex].forEach(neighbor => {
-        if(!visited[neighbor]){
-          visited[neighbor] = true;
-          queue.push(neighbor);
-        }
-      })
-    }
-    return result;
+  addEdge(vertex1, vertex2, weight) {
+    this.adjacencyList[vertex1].push({node: vertex2, weight});
+    this.adjacencyList[vertex2].push({node: vertex1, weight});
   }
 }
 
+var graph = new WeightedGraph();
 
-var g = new Graph();
-// g.addVertex('Tokyo')
-// g.addVertex('Seoul')
-// g.addVertex('America')
-// g.addVertex('Hawaii')
-// g.addEdge('Tokyo', 'Hawaii')
-// g.addEdge('Tokyo', 'Seoul')
-// g.addEdge('Hawaii', 'America')
-// g.addEdge('Seoul', 'Hawaii')
-g.addVertex("A")
-g.addVertex("B")
-g.addVertex("C")                           
-g.addVertex("D")                       
-g.addVertex("E")                       
-g.addVertex("F")                       
-                    //      A
-                    //    /   \
-                    //   B     C
-                    //  /       \
-                    // D---------E
-                    // \         /
-                    //  \       /
-                    //      F                       
-g.addEdge("A","B")                    
-g.addEdge("A","C")                     
-g.addEdge("B","D")                         
-g.addEdge("C","E")
-g.addEdge("D","E")
-g.addEdge("D","F")
-g.addEdge("E","F")
+graph.addVertex('A')
+graph.addVertex('B')
+graph.addVertex('C')
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
