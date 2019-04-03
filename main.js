@@ -1096,6 +1096,26 @@ class WeightedGraph {
   }
 }
 
+class PriorityQueue {
+  constructor() {
+    this.values = [];
+  }
+  enqeue(val, priority) {
+    this.values.push({val, priority});
+    this.sort();
+  }
+  deqeue() {
+    return this.values.shift();
+  }
+  sort() {
+    this.values.sort((a,b) => a.priority - b.priority);
+  }
+}
+
+function dijkstras(startVertex, endVertex) {
+  var distances = {}
+}
+
 var graph = new WeightedGraph();
 
 graph.addVertex('A')
