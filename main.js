@@ -1083,19 +1083,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Weighted graph
 
-class WeightedGraph {
-  constructor() {
-    this.adjacencyList = {};
-  }
-  addVertex(vertex) {
-    if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
-  }
-  addEdge(vertex1, vertex2, weight) {
-    this.adjacencyList[vertex1].push({node: vertex2, weight});
-    this.adjacencyList[vertex2].push({node: vertex1, weight});
-  }
-}
-
 class PriorityQueue {
   constructor() {
     this.values = [];
@@ -1112,8 +1099,68 @@ class PriorityQueue {
   }
 }
 
-function dijkstras(startVertex, endVertex) {
-  var distances = {}
+class WeightedGraph {
+  constructor() {
+    this.adjacencyList = {};
+  }
+  addVertex(vertex) {
+    if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+  }
+  addEdge(vertex1, vertex2, weight) {
+    this.adjacencyList[vertex1].push({node: vertex2, weight});
+    this.adjacencyList[vertex2].push({node: vertex1, weight});
+  }
+  dijkstras(start, finish) {
+    const nodes = new PriorityQueue();
+    const distances = {};
+    const previous = {};
+    let path = []; //to return at end
+    let smallest;
+
+    //build up initial state
+    for(let vertex in this.adjacencyList) {
+      if(vertex === start) {
+        distances[vertex] = 0;
+        nodes.enqeue(vertex,0);
+      } else {
+        distances[vertex] = Infinity;
+        nodes.enqeue(vertex,Infinity);
+      }
+      previous[vertex] = null;
+    }
+    //as long as ther is a vertex to visit
+    while(nodes.values.length) {
+      smallest = nodes.deqeue().val;
+      if(smallest === finish) {
+        //WE are done and build path to return
+         console.log("Distances from each vertex", distances);
+         console.log("Shows a nodes previous connection",previous);
+        while(previous[smallest]) {
+          path.push(smallest);
+          smallest = previous[smallest];
+        }
+        break;
+      }
+      if(smallest || distances[smallest] !== Infinity) {
+        for(let neighbor in this.adjacencyList[smallest]) {
+          //find neighboring node
+          let nextNode = this.adjacencyList[smallest][neighbor]
+          //calculate new distance to neighboring node
+          let candidate = distances[smallest] + nextNode.weight;
+          let nextNeighor = nextNode.node;
+          if(candidate < distances[nextNeighor]) {
+            //updating new smallest distance to neighbor
+            distances[nextNeighor] = candidate;
+            //updating previous - node we got to neighor from
+            previous[nextNeighor] = smallest;
+            //enqueue in priority queue with new priority
+            nodes.enqeue(nextNeighor, candidate);
+          }
+        }
+      }
+    }
+    return path.concat(smallest).reverse();
+  }  
 }
 
 var graph = new WeightedGraph();
@@ -1121,5 +1168,19 @@ var graph = new WeightedGraph();
 graph.addVertex('A')
 graph.addVertex('B')
 graph.addVertex('C')
+graph.addVertex('D')
+graph.addVertex('E')
+graph.addVertex('F')
+
+graph.addEdge('A','B',4)
+graph.addEdge('A','C',2)
+graph.addEdge('B','E',3)
+graph.addEdge('C','D',2)
+graph.addEdge('C','F',4)
+graph.addEdge('D','E',3)
+graph.addEdge('D','F',1)
+graph.addEdge('E','F',1)
+
+console.log("Shows shortest path to get from A to E",graph.dijkstras('A','E'));
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
