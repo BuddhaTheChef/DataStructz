@@ -1351,10 +1351,36 @@
 //Optimal substructure - if an optimal solution can be constructed from optiomal solutions of its sub propblems
 
 //Fibonacci sequence
+// Big O notation is O(2^N) // WITHOUT MEMOIZATION
 
 function fib(n) {
   if( n <= 2) return 1;
   return fib(n - 1) + fib(n - 2);
+}
+
+//Memoization
+//Fibonacci Sequence with memoization
+// Big O notation is O(N)
+
+function fib2(n, memo = []) {
+  if(memo[n] !== undefined) return memo[n];
+  if(n <= 2) return 1;
+  var response = fib2(n - 1, memo) + fib2(n - 2, memo);
+  memo[n] = response;
+  return response;
+}
+
+//Tabulation
+//Fibonacci Sequence with Tabulation
+// Big O notation is 0(N) but with better time complexity
+
+function fib3(n) {
+  if(n <= 2) return 1;
+  var fibNums = [0,1,1];
+  for(var i = 3; i <= n; i++) {
+    fibNums[i] = fibNums[i - 1] + fibNums[i - 2];
+  } 
+  return fibNums[n];
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
